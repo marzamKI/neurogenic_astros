@@ -1,16 +1,4 @@
-# Pseudotime
-# Load pkgs and color palettes
-library(Seurat)
-library(dplyr)
-library(viridis)
-library(gridExtra)
-library(grid)
-library(ggpubr)
-library(monocle)
-library(ggplot2)
-library(diffusionMap)
-library(princurve)
-library(pbapply)
+source("./code/global.R", local = FALSE)
 
 #astros_clean <- readRDS("astros_clean_filtered_tsne_dm.rds")
 astros_clean <- RunDiffusion(astros_clean, 
