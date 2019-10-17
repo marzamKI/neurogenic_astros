@@ -6,6 +6,8 @@ library(gridExtra)
 library(grid)
 library(ggpubr)
 library(ggplot2)
+library(monocle)
+library("scatterplot3d")
 
 my.inferno = c(alpha("grey85", 
                      alpha = 0.4),

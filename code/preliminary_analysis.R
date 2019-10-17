@@ -127,6 +127,11 @@ FeaturePlot(all.cells,
             reduction.use = "tsne", 
             cols.use = my.inferno)
 
+old.ident <- c("0", "1", "2", "3", "4", "5")
+new.ident <- c("AC1", "VLMC", "MG", "NB", "AC2", "OL")
+all.cells@ident <- plyr::mapvalues(x = all.cells@ident, 
+                                   from = old.ident, to = new.ident)
+
 VlnPlot(all.cells, 
         features.plot = c("nGene", "Xist", "Gjb6", "tdTomatoWRPE"), 
         point.size.use = 0.2,
@@ -143,22 +148,16 @@ all.cells_filtered <- FilterCells(object = all.cells,
 
 # Remove contaminating cells, select for astrocytes and neurogenic progeny
 astro_npcs <- SubsetData(all.cells, 
-                         ident.use = c("0", "3", "4"))
+                         ident.use = c("AC1", "AC2", "NB"))
 
 # Filter cells expressing Car4, Eng (contaminating endothelial cells) and Cspg4 (contaminating OPCs)
 astro_npcs <- FilterCells(astro_npcs, 
                           subset.names = c("Car4", "Eng", "Cspg4", "Plp1"), 
                           high.thresholds = c(0.2, 0.2, 0.2, 4))
 
-all.cells@meta.data$selected <- ifelse((all.cells_filtered@cell.names %in% 
-                                          astro_npcs@cell.names),
+all.cells@meta.data$selected <- ifelse((all.cells_filtered@cell.names %in% astro_npcs@cell.names),
                                        "SELECTED", 
                                        "FILTERED") 
 TSNEPlot(all.cells, group.by = "filter", colors.use = c("grey85", "#A52C60FF"), no.axes = T)
 
 #saveRDS(astro_npcs, "./rds/raw_astros_npcs.rds")
-
-
-
-
-
