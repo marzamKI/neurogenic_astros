@@ -1,4 +1,4 @@
-# Astro clustering
+source("./code/global.R", local = FALSE)
 
 # Load astrocyte and neuroblast sample
 astro_npcs <- readRDS("./rds/raw_astros_npcs.rds")
