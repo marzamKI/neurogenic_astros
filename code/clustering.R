@@ -141,4 +141,4 @@ markers_AC2_AC1 <- FindMarkers(astros_clean,
                                ident.2 = "AC1", 
                                only.pos = FALSE)
 
-#saveRDS(astro_npcs, "./rds/tsne.filtered_astros.rds")
+#saveRDS(astros_clean, "./rds/tsne.filtered_astros.rds")

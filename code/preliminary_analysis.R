@@ -57,11 +57,6 @@ all.cells <- FilterCells(object = all.cells,
                          high.thresholds = 0.2)
 
 # Cell cycle score
-cc.genes <- readLines(con = "./data/meta/regev_lab_cell_cycle_genes.txt")
-
-cc.genes <- CaseMatch(search = cc.genes, 
-                     match = rownames(x = all.cells@raw.data))
-
 all.cells <- CellCycleScoring(all.cells, 
                               s.genes = cc.genes[1:43], 
                               g2m.genes = cc.genes[44:97], 
