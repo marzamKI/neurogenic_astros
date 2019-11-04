@@ -63,9 +63,9 @@ aucell_regulonAUC <- loadInt(scenicOptions, "aucell_regulonAUC")
 runSCENIC_4_aucell_binarize(scenicOptions)
 
 regulons <- loadInt(scenicOptions, "regulons")
-regulons <- loadInt(scenicOptions, "aucell_regulons")
-head(cbind(onlyNonDuplicatedExtended(names(regulons))))
 
+regulonAUC <- loadInt(scenicOptions, "aucell_regulonAUC")
+regulonAUC <- regulonAUC[onlyNonDuplicatedExtended(rownames(regulonAUC)),]
 
 ## Add SCENIC output as metadata
 astro_scenic <- AddMetaData(astros_npcs, as.data.frame(cbind(cellInfo,t(getAUC(regulonAUC)))))
